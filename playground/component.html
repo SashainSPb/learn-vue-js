@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <app-header></app-header>
+        <app-footer></app-footer>
+        <app-content></app-content>
+    </div>
+    <div id="app2">
+        <app-header></app-header>
+        <app-footer></app-footer>
+        <app-content></app-content> 
+        <!-- Unknown custom element: <app-content> - did you register the component correctly? 
+        local component 재생성 필요 -->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // ** global component 등록
+        Vue.component('app-header', {
+            template: '<h1>Header</h1>' 
+        });
+        Vue.component('app-footer', {
+            template: '<footer>Diablo2 Resurrected</footer>'
+        })
+
+        new Vue({ // 인스턴스 생성 시, root component 
+            el: '#app',
+            components: { // 'component name': component content // ** local component 등록
+                'app-content': {
+                    template: '<p>content</p>'
+                }
+            }  
+        });
+
+        new Vue({
+            el:'#app2'
+        }) 
+
+    </script>
+
+</body>
+</html>
+
+<!-- local component는 하단에 어떤 component가 등록되어있는지 확인 가능. (서비스 구현 시, 대부분 해당 방법으로 이용)
+global component는 플러그인이나 라이브러리 형태로 등록. -->
+

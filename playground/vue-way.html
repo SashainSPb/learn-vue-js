@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+    </div>
+    <script>
+        let div = document.querySelector('#app');
+        let viewModel = {};
+
+        (function() { // 즉시 실행 함수 표현(IIFE, Immediately Invoked Function Expression):
+
+            function init() {
+                Object.defineProperty(viewModel, 'str', {
+                    get: function(){ // 속성에 접근했을 때의 동작을 정의
+                        console.log('접근~');
+                    },
+                    set: function(newValue){ // 속성에 값을했을 때의 동작을 정의
+                        console.log('할당~', newValue);
+                        render(newValue);
+                    }
+                }); // Vue의 핵심인  'reactivity' -> 데이터의 변화를 library에서 감지해서 알아서 렌더링, data binding
+            }    
+
+            function render(value) {
+                div.innerHTML = value;
+            }
+
+            init(); // IIFE: 실행 부분을 또 다른 scope에 넣어주는 기능. 일반적으로 오픈소스 라이브러리에서 변수를 해당 방법으로 관리
+            // 1. 괄호 안에 익명함수를 집어넣어, 전역 스코프에 불필요한 변수를 추가해서 오염시키는 것을 방지
+            // 2. IIFE 내부 안으로 다른 변수들이 접근하는 것을 막을 수 있는 방법.
+            // 3. 38번째 줄에 ()는 함수를 실행시킨다.
+        })();    
+    </script>
+    
+</body>
+</html>
