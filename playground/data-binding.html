@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 간단한 attribute 설정으로 'dom 조작'을 가능케 함. -->
+    <p v-bind:id="uuid" v-bind:class="str">{{ num }}</p>
+    <p>{{ doubleNum }}</p>
+    <div v-if="loading">
+      Loading...
+    </div>
+    <div v-else>
+      user has already been logged in
+    </div>
+    <div v-show="loading">
+      Loading...
+    </div>
+    <!-- show attribute는 아예 렌더링에서 제외시킴. -->
+    <input v-model="message" placeholder="input anything"> 
+    <p>Message is: {{ message }}</p>
+    
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        str: 'SashaInSPb',
+        num: 10,
+        uuid: 'abc1234',
+        loading: true,
+        message: '' 
+      },
+      computed: { // computed 간단한 연산을 가능케 하는 attribute
+        doubleNum: function() {  
+          return this.num * 3;
+        }
+      }
+    })
+
+  </script>
+
+</body>
+</html>

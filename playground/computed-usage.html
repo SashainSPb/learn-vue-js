@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .warning {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <p v-bind:class="{ warning: errorTextColor }">Hello, Hello, Hello, How low? </p>   
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        isError: false,
+        cname: 'smellLikeAteenSpirit-text',
+      },
+      computed: {
+        errorTextColor: function() {
+          return this.isError ? 'warning' : null;
+        }
+      }
+    })
+  </script>
+
+  
+</body>
+</html>
+
+<!-- element의 class 목록과 inline 스타일을 조작하기 위해 일반적으로 사용 / html class, id 부여처럼 특정 tag 접근을 위해서 쓰이는 걸로 추정-->

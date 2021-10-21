@@ -1,37 +1,27 @@
 <template>
   <div>
-    <!-- <app-header v-bind:프롭스 속성 이름="상위 컴포넌트의 데이터 이름"></app-header> -->
-    <app-header 
-      v-bind:propsdata="str"
-      v-on:renew="renewStr"></app-header>
+    <app-header v-bind:propsdata = "str"
+    v-on:renew="renewStr"
+    ></app-header>
+    <h2>{{ propsdata }}</h2>
   </div>
 </template>
 
 <script>
 import AppHeader from './components/AppHeader.vue';
 
-// var AppHeader = {
-//   template: '<header><h1>Header</h1></header>'
-// }
-
-// new Vue({
-//   data: {
-//     str: 'hi'
-//   }
-// })
-
 export default {
   data: function() {
     return {
-      str: 'Header'
-    }
-  },
+      str: 'hi' 
+    } // component 재활용 시, 참조오류를 방지하기 위해서 함수로 새 객체를 return 해주는 방식을 작성 필요. 
+  },  
   components: {
     'app-header': AppHeader
   },
   methods: {
     renewStr: function() {
-      this.str = 'hi';
+      this.str = 'Hello Hello Hello How low';
     }
   }
 }
@@ -40,3 +30,5 @@ export default {
 <style>
 
 </style>
+
+// component 이름은 기본 tag와의 구별을 위해 두 단어 이상의 PascalCase로 작성해준다. 

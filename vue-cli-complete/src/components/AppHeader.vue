@@ -10,7 +10,7 @@ export default {
   props: ['propsdata'],
   methods: {
     sendEvent: function() {
-      this.$emit('renew');
+      this.$emit('renew')
     }
   }
 }
@@ -19,3 +19,4 @@ export default {
 <style>
 
 </style>
+
